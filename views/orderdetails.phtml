@@ -1,0 +1,64 @@
+<?php 
+include '../views/header.phtml'; 
+?>
+
+<main>
+	<h1>Bons de commande</h1>
+	<a href="orders.php">Retourner à l'accueil</a>
+
+	<section>
+		<h2><?= $customer["customerName"] ?></h2>
+		<h3><?= $customer["contactFirstName"] ?> <?= $customer["contactLastName"] ?></h3>
+		<p><?= $customer["addressLine1"] ?> </p>
+		<p><?= $customer["city"] ?> </p>
+	</section>
+	<table>
+		<caption>Bon de commande n°<?= $orderNumber ?></caption>
+		<thead>
+			<tr>
+				<th>Produit</th>
+				<th>Prix Unitaire</th>
+				<th>Quantité</th>
+				<th>Prix Total</th>				 	 	
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($orderDetails as $orderDetail): ?>
+			<tr>
+				<td><?= $orderDetail["productName"] ?></td>
+				<td><?= $orderDetail["quantityOrdered"] ?></td>
+				<td><?= $orderDetail["priceEach"] ?>€</td>
+				<td><?= $orderDetail["prixTotal"] ?>€</td>	
+			</tr>
+		<?php endforeach; ?>	
+		
+		</tbody>
+		<tfoot>
+			
+				<tr>
+				<td> Montant Total HT </td> 
+				<td> <?= $totalHT["montantTotalHT"] ?>€</td>
+			</tr>
+			<tr>
+				<td> TVA 20% </td> 
+				<td><?=$totalHT["montantTotalHT"]*1.2-$totalHT["montantTotalHT"] ?>€</td>
+			</tr>
+			<tr>
+				<td> Montant Total TTC </td> 
+				<td><?= $totalHT["montantTotalHT"]*1.2 ?>€</td>
+			</tr>
+		
+		</tfoot>
+
+
+
+
+	</table>
+
+
+
+</main>
+
+<?php 
+include '../views/footer.phtml'; 
+?>
