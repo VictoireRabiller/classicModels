@@ -10,6 +10,7 @@ include '../views/header.phtml';
 		<h2><?= $customer["customerName"] ?></h2>
 		<h3><?= $customer["contactFirstName"] ?> <?= $customer["contactLastName"] ?></h3>
 		<p><?= $customer["addressLine1"] ?> </p>
+		<p><?= $customer["addressLine2"] ?> </p>
 		<p><?= $customer["city"] ?> </p>
 	</section>
 	<table>
@@ -23,29 +24,38 @@ include '../views/header.phtml';
 			</tr>
 		</thead>
 		<tbody>
+		<?php $ht = 0; $TTC = 0; $tva = 0; ?>
 		<?php foreach ($orderDetails as $orderDetail): ?>
 			<tr>
 				<td><?= $orderDetail["productName"] ?></td>
-				<td><?= $orderDetail["quantityOrdered"] ?></td>
 				<td><?= $orderDetail["priceEach"] ?>€</td>
+				<td><?= $orderDetail["quantityOrdered"] ?></td>
 				<td><?= $orderDetail["prixTotal"] ?>€</td>	
 			</tr>
+			<?= $ht += $orderDetail["prixTotal"] ?>
 		<?php endforeach; ?>	
 		
 		</tbody>
 		<tfoot>
-			
-				<tr>
+			<tr> </tr>
+			<tr>
 				<td> Montant Total HT </td> 
-				<td> <?= $totalHT["montantTotalHT"] ?>€</td>
+				<td> </td>
+				<td> </td>
+				<td> <?= $totalHT = $ht ?>€</td>
+
 			</tr>
 			<tr>
 				<td> TVA 20% </td> 
-				<td><?=$totalHT["montantTotalHT"]*1.2-$totalHT["montantTotalHT"] ?>€</td>
+				<td> </td>
+				<td> </td>
+				<td><?=$tva=$totalHT*1.2-$totalHT ?>€</td>
 			</tr>
 			<tr>
 				<td> Montant Total TTC </td> 
-				<td><?= $totalHT["montantTotalHT"]*1.2 ?>€</td>
+				<td> </td>
+				<td> </td>
+				<td><?=$TTC=$totalHT*1.2 ?>€</td>
 			</tr>
 		
 		</tfoot>

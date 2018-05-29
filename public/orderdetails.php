@@ -20,9 +20,9 @@ $orderDetails = getOrderDetails($order);
 // pre($orderDetails);
 // exit;
 
-$totalHT = getMontantTotalHT($order);
-pre($totalHT);
-exit;
+// $totalHT = getMontantTotalHT($order);
+// pre($totalHT);
+// exit;
 
 
 

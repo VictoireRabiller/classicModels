@@ -13,7 +13,7 @@ function getOrders (){
 	$db = getDb();
 	$sql = "SELECT orderNumber, orderDate, shippedDate, status 
 	FROM orders
-	ORDER BY orderNumber ASC";
+	ORDER BY orderNumber DESC";
 
 	$statement = $db->prepare($sql);
 
@@ -35,8 +35,8 @@ function getAnOrder ($orderNumber){
 	$statement->execute();
 	$order = $statement->fetch(\PDO::FETCH_ASSOC);
 	return $order;
-	pre($order);
-	exit;
+	// pre($order);
+	// exit;
 }
 
 
@@ -74,19 +74,19 @@ function getOrderDetails($orderNumber){
 }
 
 
-function getMontantTotalHT($orderNumber){
-	$db = getDb();
-	$orderId =$_GET['orderNumber'];
-	$sql = "SELECT SUM(quantityOrdered*priceEach) AS montantTotalHT FROM orderdetails GROUP BY orderNumber = $orderId";
+// function getMontantTotalHT($orderNumber){
+// 	$db = getDb();
+// 	$orderId =$_GET['orderNumber'];
+// 	$sql = "SELECT SUM(quantityOrdered*priceEach) AS montantTotalHT FROM orderdetails GROUP BY orderNumber = $orderId";
 
-	$statement = $db->prepare($sql);
+// 	$statement = $db->prepare($sql);
 
-	$statement->execute();
-	$montantTotalHT = $statement->fetchAll(\PDO::FETCH_ASSOC);
+// 	$statement->execute();
+// 	$montantTotalHT = $statement->fetchAll(\PDO::FETCH_ASSOC);
 	
-	return $montantTotalHT;
+// 	return $montantTotalHT;
 
-}
+// }
 
 
 
